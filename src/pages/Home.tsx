@@ -26,10 +26,12 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     fontSize: 36,
   },
   sideMenuList: {
+    position: 'sticky',
+    top: 0,
     listStyle: 'none',
     padding: 0,
     margin: 0,
-    width: 230,
+    maxWidth: 230,
   },
   sideMenuListItem: {
     cursor: 'pointer',
