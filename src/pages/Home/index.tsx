@@ -18,10 +18,7 @@ import { useHomeStyles } from './theme';
 import { SearchTextField } from '../../components/SearchTextField';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTweets } from '../../store/ducks/tweets/actionCreators';
-import {
-  selectIsTweetsLoading,
-  selectTweetsItems,
-} from '../../store/ducks/tweets/selectors';
+import { selectIsTweetsLoading, selectTweetsItems } from '../../store/ducks/tweets/selectors';
 import { Tags } from '../../components/Tags';
 import { Route } from 'react-router-dom';
 import { BackButton } from '../../components/BackButton';
@@ -60,6 +57,7 @@ export const Home = () => {
                 <Typography variant="h6">Твитнуть</Typography>
               </Route>
             </Paper>
+
             <Route path={['/home', '/home/search']} exact>
               <Paper>
                 <div className={classes.addForm}>
@@ -75,9 +73,7 @@ export const Home = () => {
                   <CircularProgress />
                 </div>
               ) : (
-                tweets.map((tweet) => (
-                  <Tweet key={tweet._id} classes={classes} {...tweet} />
-                ))
+                tweets.map((tweet) => <Tweet key={tweet._id} classes={classes} {...tweet} />)
               )}
             </Route>
 
