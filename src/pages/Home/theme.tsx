@@ -60,8 +60,8 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
   tweetsWrapper: {
     borderRadius: 0,
     height: '100%',
-    borderTop: '0',
-    borderBottom: '0',
+    borderTop: 0,
+    borderBottom: 0,
   },
   tweetsCentred: {
     marginTop: 50,
@@ -70,14 +70,19 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
   tweetsHeader: {
     display: 'flex',
     alignItems: 'center',
-    borderTop: '0',
-    borderLeft: '0',
-    borderRight: '0',
+    flex: 1,
+    borderTop: 0,
+    borderLeft: 0,
+    borderRight: 0,
     borderRadius: 0,
     padding: '10px 15px',
     '& h6': {
       fontWeight: 800,
     },
+  },
+  tweetsHeaderUser: {
+    display: 'flex',
+    alignItems: 'center',
   },
   tweetsHeaderBackButton: {
     marginRight: 20,
@@ -111,6 +116,16 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
   tweetUserName: {
     color: grey[500],
   },
+  fullTweet: {
+    padding: 22,
+  },
+  fullTweetText: {
+    fontSize: 24,
+    marginTop: 20,
+    lineHeight: 1.3125,
+    wordBreak: 'break-word',
+  },
+
   rightSide: {
     paddingTop: 20,
     position: 'sticky',

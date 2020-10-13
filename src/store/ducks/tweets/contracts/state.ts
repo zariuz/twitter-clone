@@ -15,7 +15,14 @@ export interface Tweet {
   };
 }
 
+export enum AddFormState {
+  LOADING = 'LOADING',
+  ERROR = 'ERROR',
+  NEVER = 'NEVER',
+}
+
 export interface TweetsState {
   items: Tweet[];
+  addFormState: AddFormState;
   loadingState: LoadingState;
 }
