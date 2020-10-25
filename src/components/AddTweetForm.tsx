@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAddTweet } from '../store/ducks/tweets/actionCreators';
 import { selectAddFormState } from '../store/ducks/tweets/selectors';
 import { AddFormState } from '../store/ducks/tweets/contracts/state';
-import { useHomeStyles } from '../pages/Home/theme';
+import { useHomeStyles } from '../pages/theme';
 
 interface AddTweetFormProps {
   classes: ReturnType<typeof useHomeStyles>;
