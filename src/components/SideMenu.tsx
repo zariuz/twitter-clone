@@ -112,7 +112,7 @@ export const SideMenu: React.FC<SideMenuProps> = ({
           </div>
         </li>
         <li className={classes.sideMenuListItem}>
-          <Link to='/user/archakov06'>
+          <Link to='/user/EvgeniyNec'>
             <div>
               <UserIcon className={classes.sideMenuListItemIcon} />
 
