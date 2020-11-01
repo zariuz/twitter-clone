@@ -1,9 +1,4 @@
-export enum LoadingState {
-  LOADED = 'LOADED',
-  LOADING = 'LOADING',
-  ERROR = 'ERROR',
-  NEVER = 'NEVER',
-}
+import { LoadingStatus } from '../../../types';
 
 export interface Tweet {
   _id: string;
@@ -25,5 +20,5 @@ export enum AddFormState {
 export interface TweetsState {
   items: Tweet[];
   addFormState: AddFormState;
-  loadingState: LoadingState;
+  loadingState: LoadingStatus;
 }

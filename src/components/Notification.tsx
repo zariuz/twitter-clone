@@ -1,34 +1,31 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import Alert, { Color } from '@material-ui/lab/Alert';
 
 interface NotificationProps {
-  children: React.ReactElement;
+  children: (callback: (text: string, type: Color) => void) => React.ReactElement;
 }
-
-const Alert = (props: AlertProps) => {
-  return <MuiAlert elevation={6} variant='filled' {...props} />;
-};
 
 export const Notification: React.FC<NotificationProps> = ({
   children,
 }): React.ReactElement => {
   const [open, setOpen] = useState<boolean>(false);
-  const [notificationText, setNotificationText] = useState<string>();
+  const [notificationText, setNotificationText] = useState<{
+    text: string;
+    type: Color;
+  }>();
 
-  const openNotification = (text: string) => {
-    setNotificationText(text);
+  const openNotification = (text: string, type: Color) => {
+    setNotificationText({ text, type });
     setOpen(true);
   };
 
   return (
     <>
-      {React.cloneElement(children, { openNotification })}
+      {children(openNotification)}
       <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)}>
-        <Alert onClose={() => setOpen(false)} severity='success'>
-          {notificationText}
+        <Alert onClose={() => setOpen(false)} severity={notificationText?.type}>
+          {notificationText?.text}
         </Alert>
       </Snackbar>
     </>

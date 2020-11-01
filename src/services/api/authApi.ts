@@ -8,7 +8,10 @@ interface ResponseApi {
 
 export const AuthApi = {
   async signIn(postData: LoginFormProps): Promise<ResponseApi> {
-    const { data } = await axios.post<ResponseApi>('/auth/login', postData);
+    const { data } = await axios.post<ResponseApi>('/auth/login', {
+      username: postData.email,
+      password: postData.password,
+    });
     return data;
   },
 };
