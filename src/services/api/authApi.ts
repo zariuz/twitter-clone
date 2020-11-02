@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axios } from '../../core/axios';
 import { LoginFormProps } from './../../pages/SignIn/components/LoginModal';
 
 interface ResponseApi {
@@ -12,6 +12,10 @@ export const AuthApi = {
       username: postData.email,
       password: postData.password,
     });
+    return data;
+  },
+  async getMe(): Promise<ResponseApi> {
+    const { data } = await axios.get<ResponseApi>('/users/me');
     return data;
   },
 };

@@ -49,13 +49,20 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   ) => {
     try {
       dispatch(fetchSignIn(data));
-      if (loadingStatus === LoadingStatus.SUCCESS) {
-        openNotification('Авторизация прошла успешна!', 'success');
-      }
+      openNotification('Авторизация прошла успешна!', 'success');
     } catch (error) {
       openNotification('Неверный логин или пароль!', 'error');
     }
   };
+
+  useEffect(() => {
+    if (loadingStatus === LoadingStatus.SUCCESS) {
+      openNotification('Авторизация прошла успешна!', 'success');
+      onClose();
+    } else if (loadingStatus === LoadingStatus.ERROR) {
+      openNotification('Неверный логин или пароль!', 'error');
+    }
+  }, [loadingStatus]);
 
   return (
     <Notification>
@@ -64,26 +71,26 @@ export const LoginModal: React.FC<LoginModalProps> = ({
           visible={open}
           onClose={onClose}
           classes={classes}
-          title='Войти в аккаунт'>
+          title="Войти в аккаунт">
           <form onSubmit={handleSubmit(onSubmit.bind(null, openNotification))}>
             <FormControl
               className={classes.loginFormControl}
-              component='fieldset'
+              component="fieldset"
               fullWidth>
-              <FormGroup aria-label='position' row>
+              <FormGroup aria-label="position" row>
                 <Controller
                   as={TextField}
                   control={control}
-                  name='email'
+                  name="email"
                   className={classes.loginSideField}
-                  id='email'
-                  label='E-Mail'
+                  id="email"
+                  label="E-Mail"
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  variant='filled'
-                  type='email'
-                  defaultValue=''
+                  variant="filled"
+                  type="email"
+                  defaultValue=""
                   helperText={errors.email?.message}
                   error={!!errors.email}
                   autoFocus
@@ -93,23 +100,23 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                 <Controller
                   as={TextField}
                   control={control}
-                  name='password'
+                  name="password"
                   className={classes.loginSideField}
-                  id='password'
-                  label='Пароль'
+                  id="password"
+                  label="Пароль"
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  variant='filled'
-                  type='password'
-                  defaultValue=''
+                  variant="filled"
+                  type="password"
+                  defaultValue=""
                   helperText={errors.password?.message}
                   error={!!errors.password}
                   autoFocus
                   fullWidth
                 />
 
-                <Button type='submit' variant='contained' color='primary' fullWidth>
+                <Button type="submit" variant="contained" color="primary" fullWidth>
                   Войти
                 </Button>
               </FormGroup>
