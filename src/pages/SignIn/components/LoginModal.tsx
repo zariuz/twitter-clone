@@ -48,7 +48,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     dispatch(fetchSignIn(data));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (loadingStatus === LoadingStatus.SUCCESS) {
       openNotificationRef.current('Авторизация успешна!', 'success');
       onClose();

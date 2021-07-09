@@ -1,15 +1,5 @@
 import { LoadingStatus } from '../../../types';
-
-export interface Tweet {
-  _id: string;
-  text: string;
-  createdAt: string;
-  user: {
-    fullname: string;
-    username: string;
-    avatarUrl: string;
-  };
-}
+import { User } from '../../user/contracts/state';
 
 export enum AddFormState {
   LOADING = 'LOADING',
@@ -17,8 +7,16 @@ export enum AddFormState {
   NEVER = 'NEVER',
 }
 
+export interface Tweet {
+  _id: string;
+  text: string;
+  images?: [];
+  createdAt: string;
+  user: User;
+}
+
 export interface TweetsState {
   items: Tweet[];
+  LoadingStatus: LoadingStatus;
   addFormState: AddFormState;
-  loadingState: LoadingStatus;
 }

@@ -1,11 +1,10 @@
-import { UserActionsType } from './contracts/actionTypes';
 import produce, { Draft } from 'immer';
-
+import { LoadingStatus } from '../../types';
 import { UserActions } from './actionCreators';
+import { UserActionsType } from './contracts/actionTypes';
 import { UserState } from './contracts/state';
-import { LoadingStatus } from './../../types';
 
-const initialUser: UserState = {
+const initialUserState: UserState = {
   data: undefined,
   status: LoadingStatus.NEVER,
 };
@@ -21,7 +20,12 @@ export const userReducer = produce((draft: Draft<UserState>, action: UserActions
       draft.status = action.payload;
       break;
 
+    case UserActionsType.SIGN_OUT:
+      draft.status = LoadingStatus.LOADED;
+      draft.data = undefined;
+      break;
+
     default:
       break;
   }
-}, initialUser);
+}, initialUserState);

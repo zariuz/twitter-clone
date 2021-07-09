@@ -1,11 +1,12 @@
-import { LoadingStatus } from './../../types';
+import { LoadingStatus } from '../../types';
 import {
   AddTweetActionInterface,
   FetchAddTweetActionInterface,
   FetchTweetsActionInterface,
+  RemoveTweetActionInterface,
   SetAddFormStateActionInterface,
   SetTweetsActionInterface,
-  SetTweetsLoadingStateActionInterface,
+  SetTweetsLoadingStatusActionInterface,
   TweetsActionsType,
 } from './contracts/actionTypes';
 import { AddFormState, Tweet, TweetsState } from './contracts/state';
@@ -15,18 +16,10 @@ export const setTweets = (payload: TweetsState['items']): SetTweetsActionInterfa
   payload,
 });
 
-export const setTweetsLoadingState = (
-  payload: LoadingStatus,
-): SetTweetsLoadingStateActionInterface => ({
-  type: TweetsActionsType.SET_LOADING_STATE,
-  payload,
-});
-
-export const fetchTweets = (): FetchTweetsActionInterface => ({
-  type: TweetsActionsType.FETCH_TWEETS,
-});
-
-export const fetchAddTweet = (payload: string): FetchAddTweetActionInterface => ({
+export const fetchAddTweet = (payload: {
+  text: string;
+  images: string[];
+}): FetchAddTweetActionInterface => ({
   type: TweetsActionsType.FETCH_ADD_TWEET,
   payload,
 });
@@ -36,17 +29,32 @@ export const addTweet = (payload: Tweet): AddTweetActionInterface => ({
   payload,
 });
 
-export const setAddFormState = (
-  payload: AddFormState,
-): SetAddFormStateActionInterface => ({
+export const setTweetsLoadingStatus = (
+  payload: LoadingStatus,
+): SetTweetsLoadingStatusActionInterface => ({
+  type: TweetsActionsType.SET_LOADING_STATE,
+  payload,
+});
+
+export const setAddFormState = (payload: AddFormState): SetAddFormStateActionInterface => ({
   type: TweetsActionsType.SET_ADD_FORM_STATE,
   payload,
+});
+
+export const removeTweet = (payload: string): RemoveTweetActionInterface => ({
+  type: TweetsActionsType.REMOVE_TWEET,
+  payload,
+});
+
+export const fetchTweets = (): FetchTweetsActionInterface => ({
+  type: TweetsActionsType.FETCH_TWEETS,
 });
 
 export type TweetsActions =
   | SetTweetsActionInterface
   | FetchTweetsActionInterface
-  | SetTweetsLoadingStateActionInterface
+  | SetTweetsLoadingStatusActionInterface
   | FetchAddTweetActionInterface
   | AddTweetActionInterface
-  | SetAddFormStateActionInterface;
+  | SetAddFormStateActionInterface
+  | RemoveTweetActionInterface;

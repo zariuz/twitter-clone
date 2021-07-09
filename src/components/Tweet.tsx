@@ -5,11 +5,11 @@ import RepostIcon from '@material-ui/icons/RepeatOutlined';
 import LikeIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import ShareIcon from '@material-ui/icons/ReplyOutlined';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Link, useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
-import { formatDate } from '../utils/formatDate';
-import { useHomeStyles } from '../pages/theme';
-import { Avatar, IconButton, Menu, MenuItem, Paper, Typography } from '@material-ui/core';
+import {formatDate} from '../utils/formatDate';
+import {useHomeStyles} from '../pages/theme';
+import {Avatar, IconButton, Menu, MenuItem, Paper, Typography} from '@material-ui/core';
 
 interface TweetProps {
   _id: string;
@@ -50,31 +50,38 @@ export const Tweet: React.FC<TweetProps> = ({
   };
 
   return (
-    <a onClick={handleClickTweet} className={classes.tweetWrapper} href={`/home/tweet/${_id}`}>
-      <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant='outlined'>
+    <a
+      onClick={handleClickTweet}
+      className={classes.tweetWrapper}
+      href={`/home/tweet/${_id}`}>
+      <Paper
+        className={classNames(classes.tweet, classes.tweetsHeader)}
+        variant="outlined">
         <Avatar
           className={classes.tweetAvatar}
           alt={`Аватарка пользователя ${user.fullname}`}
           src={user.avatarUrl}
         />
         <div className={classes.tweetContent}>
-          <Typography className={classes.tweetHeader}>
+          <div className={classes.tweetHeader}>
             <div>
               <b>{user.fullname}</b>&nbsp;
               <span className={classes.tweetUserName}>@{user.username}</span>&nbsp;
               <span className={classes.tweetUserName}>·</span>&nbsp;
-              <span className={classes.tweetUserName}>{formatDate(new Date(createdAt))}</span>
+              <span className={classes.tweetUserName}>
+                {formatDate(new Date(createdAt))}
+              </span>
             </div>
             <div>
               <IconButton
-                aria-label='more'
-                aria-controls='long-menu'
-                aria-haspopup='true'
+                aria-label="more"
+                aria-controls="long-menu"
+                aria-haspopup="true"
                 onClick={handleClick}>
                 <MoreVertIcon />
               </IconButton>
               <Menu
-                id='long-menu'
+                id="long-menu"
                 anchorEl={anchorEl}
                 keepMounted
                 open={open}
@@ -83,30 +90,30 @@ export const Tweet: React.FC<TweetProps> = ({
                 <MenuItem onClick={handleClose}>Удалить твит</MenuItem>
               </Menu>
             </div>
-          </Typography>
-          <Typography variant='body1' gutterBottom>
+          </div>
+          <Typography variant="body1" gutterBottom>
             {text}
           </Typography>
           <div className={classes.tweetFooter}>
             <div>
               <IconButton>
-                <CommentIcon style={{ fontSize: 20 }} />
+                <CommentIcon style={{fontSize: 20}} />
               </IconButton>
               <span>3</span>
             </div>
             <div>
               <IconButton>
-                <RepostIcon style={{ fontSize: 20 }} />
+                <RepostIcon style={{fontSize: 20}} />
               </IconButton>
             </div>
             <div>
               <IconButton>
-                <LikeIcon style={{ fontSize: 20 }} />
+                <LikeIcon style={{fontSize: 20}} />
               </IconButton>
             </div>
             <div>
               <IconButton>
-                <ShareIcon style={{ fontSize: 20 }} />
+                <ShareIcon style={{fontSize: 20}} />
               </IconButton>
             </div>
           </div>
